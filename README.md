@@ -1,5 +1,12 @@
 # cmps357-sp26-first-example
 
+## Project Requirements
+ - Java IDE such as **IntelliJ Community Edition** [Windows](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1.exe?_cl=MTsxOzE7c2tod09qdG1hNXpQbERWcGpJWGlZUUZ6Ym0zUW0yVTdpSGxRWHE3RU85RVJPaGtGd2tQSmNRTW13NGpSb0lXbTs=&_gl=1*1uc1dra*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [Linux](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1-aarch64.tar.gz?_gl=1*njar6m*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [macOS (Intel)](https://download.jetbrains.com/idea/ideaIC-2025.2.6.1.dmg?_gl=1*ue2abp*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw) [macOS (Apple Silicone)](https://download.jetbrains.com/idea/idea-2025.3.1.1-aarch64.dmg?_gl=1*ue2abp*_gcl_au*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*FPAU*MTI0NzgwMjk5NS4xNzY4NTgwNjIy*_ga*MTk5NDUxODMxNy4xNzY4NTgwNjIy*_ga_9J976DJZ68*czE3Njg1ODA2MTkkbzEkZzEkdDE3Njg1ODA2NjkkajEwJGwwJGgw)
+ - Java SDK such as Azul Zulu
+    - Available to download from with IntelliJ, or
+    - Available [here](https://www.azul.com/downloads/?version=java-17-lts&package=jdk#zulu)
+ - Git [Windows](https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/Git-2.52.0-64-bit.exe) [Linux](https://git-scm.com/install/linux) [macOS](https://git-scm.com/install/mac)
+
 ## Day 1 Spec-to-Implementation (Recipe Class)
 
 Clone the repository (repo), open it in IntelliJ (Get from VCS), run `Main`.
