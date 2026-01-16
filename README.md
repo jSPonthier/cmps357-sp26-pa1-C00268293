@@ -12,6 +12,9 @@ Suggested workflow:
 3. Implement one method at a time
 4. Make small commits with meaningful messages
 
+**Note**: Students will not be able to Push changes (save to the server) because they are not contributors to this repository. Normally, sample code would first be Forked into a student’s own repository and then cloned locally. A fork is a server-side copy of a repository created under your own GitHub account, allowing you to make changes, Commit them, and Push updates without affecting the original project. We will use that workflow later in the course, though students are welcome to Fork this repo if they with to experiment.
+
+
 ## Repository Structure 
 ```
 cmps357-sp26-first-example/
