@@ -1,6 +1,6 @@
 # cmps357-sp26-first-example
 
-## CMPS 357: Day 1 Spec-to-Implementation (Recipe)
+## Day 1 Spec-to-Implementation (Recipe Class)
 
 Clone the repo, open it in IntelliJ (Get from VCS), run `Main`.
 
