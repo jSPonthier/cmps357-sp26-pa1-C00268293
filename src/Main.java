@@ -9,13 +9,13 @@ public class Main {
         r.addIngredient("red pepper flakes (tsp)", 0.5);
         r.addIngredient("parsley (cup)", 0.25);
 
-        System.out.println(r.toPrettyString());
+        System.out.println(r.toString());
         System.out.println();
         System.out.println("Ingredient entries: " + r.totalIngredientCount());
         System.out.println();
         System.out.println("After scaling to 5 servings:");
         System.out.println();
         r.scaleToServings(5);
-        System.out.println(r.toPrettyString());
+        System.out.println(r.toString());
     }
 }
