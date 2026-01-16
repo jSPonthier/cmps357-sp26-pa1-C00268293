@@ -13,6 +13,7 @@ Suggested workflow:
 4. Make small commits with meaningful messages
 
 ## Repository Structure 
+```
 cmps357-sp26-first-example/
 ├─ README.md
 ├─ SPEC.md
@@ -20,3 +21,4 @@ cmps357-sp26-first-example/
 └─ src/
    ├─ Main.java
    └─ Recipe.java
+```
