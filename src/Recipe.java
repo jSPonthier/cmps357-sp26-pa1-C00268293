@@ -21,12 +21,20 @@ public class Recipe {
     }
 
     public void addIngredient(String ingredientName, double amount) {
-        // TODO:
-        // - Validate ingredientName non-null and non-blank
-        // - Validate amount > 0
-        // - Add to ingredientNames and ingredientAmounts in matching positions
-        throw new UnsupportedOperationException("TODO");
+        if (ingredientName == null || ingredientName.trim().isEmpty()) {
+            System.out.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
+            return;
+        }
+
+        if (amount <= 0) {
+            System.out.println("[DEBUG] Invalid ingredient amount. Ingredient not added.");
+            return;
+        }
+
+        ingredientNames.add(ingredientName);
+        ingredientAmounts.add(amount);
     }
+
 
     public int totalIngredientCount() {
         // TODO: return number of ingredient entries
