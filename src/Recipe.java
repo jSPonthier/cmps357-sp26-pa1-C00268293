@@ -19,7 +19,21 @@ public class Recipe {
         this.name = name;
         this.servings = servings;
     }
-
+    /**
+     * Adds an ingredient and its amount to the recipe.
+     *
+     * <p>The ingredient is only added if both inputs are valid:
+     * <ul>
+     *   <li>{@code ingredientName} must be non-null and not blank</li>
+     *   <li>{@code amount} must be greater than 0</li>
+     * </ul>
+     *
+     * <p>If either input is invalid, this method leaves the recipe unchanged
+     * and prints a debug message to standard output.
+     *
+     * @param ingredientName the name of the ingredient
+     * @param amount the amount of the ingredient
+     */
     public void addIngredient(String ingredientName, double amount) {
         if (ingredientName == null || ingredientName.trim().isEmpty()) {
             System.out.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
