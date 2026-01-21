@@ -50,9 +50,17 @@ public class Recipe {
     }
 
 
+    /**
+     * Returns the number of ingredient entries in this recipe.
+     *
+     * <p>This recipe stores ingredient data in parallel lists; the number of
+     * entries is the size of the ingredient name list.
+     *
+     * @return the number of ingredients added to the recipe
+     */
     public int totalIngredientCount() {
-        // TODO: return number of ingredient entries
-        throw new UnsupportedOperationException("TODO");
+        // Return the number of ingredient entries (parallel lists length)
+        return ingredientNames.size();
     }
 
     public void scaleToServings(int newServings) {
