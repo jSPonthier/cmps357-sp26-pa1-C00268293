@@ -64,29 +64,32 @@ By the end of this sequence, you should be comfortable reading a spec, using an 
 
 
 
-## Repository Structure 
+## Repository Structure
+
 ```
 cmps357-sp26-first-example/
 ├─ docs/
-   ├─ SPEC.md
-   ├─ ARCHITECTURE.md
-   ├─ DATA_MODEL.md
-   ├─ STAGES.md
+│  ├─ SPEC.md
+│  ├─ ARCHITECTURE.md
+│  ├─ DATA_MODEL.md
+│  └─ STAGES.md
 └─ src/
-   ├─ /main/java/...
-   ├─ Main.java
-   ├─ model/
-      ├─ Recipe.java
-      └─ Ingredient.java
-   ├─ service/
-      ├─ RecipeBook.java
-      ├─ ShoppingCart.java
-      ├─ Search.java
-      └─ Sorts.java
-   ├─ io/
-      └─ RecipeJsonStore.java
-   ├─ ui/
-      └─ ConsoleUI.java   (or JavaFXUI.java, or WebUI adapter later)
+   └─ cmps357/
+      └─ sp26/
+         ├─ Main.java
+         ├─ model/
+         │  ├─ Recipe.java
+         │  └─ Ingredient.java
+         ├─ service/
+         │  ├─ RecipeBook.java
+         │  ├─ ShoppingCart.java
+         │  ├─ Search.java
+         │  └─ Sorts.java
+         ├─ io/
+         │  └─ RecipeJsonStore.java
+         └─ ui/
+            └─ ConsoleUI.java
 ```
+> Note: The `ui/` directory is structured to allow future alternatives such as JavaFX or web-based front ends.
 
 The updated files and workflow in this repository (Day 2+) were created with the help of a [ChatGPT Session](https://chatgpt.com/share/6972a438-2e10-8011-9a61-eef40179e2c6).
