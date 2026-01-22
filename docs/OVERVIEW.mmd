@@ -1,0 +1,11 @@
+flowchart TD
+  %% Architecture overview (layered)
+  UI[UI Layer<br/>ConsoleUI / future GUI/Web] --> SVC[Service Layer<br/>RecipeBook, Search, ShoppingCart, Sorts]
+  SVC --> DM[Domain Model<br/>Recipe, Ingredient]
+
+  %% Persistence is used by services (invoked by UI commands) but depends only on domain types
+  UI --> IO[Persistence Layer<br/>RecipeJsonStore (JSON read/write)]
+  IO --> DM
+
+  %% Notes about dependency direction
+  DM -. no dependencies outward .- DM
