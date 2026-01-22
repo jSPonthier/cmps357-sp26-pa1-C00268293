@@ -25,12 +25,26 @@ Suggested workflow:
 ## Repository Structure 
 ```
 cmps357-sp26-first-example/
-├─ README.md
-├─ SPEC.md
-├─ .gitignore
+├─ docs/
+   ├─ SPEC.md
+   ├─ ARCHITECTURE.md
+   ├─ DATA_MODEL.md
+   ├─ STAGES.md
 └─ src/
+   ├─ /main/java/...
    ├─ Main.java
-   └─ Recipe.java
+   ├─ model/
+      ├─ Recipe.java
+      └─ Ingredient.java
+   ├─ service/
+      ├─ RecipeBook.java
+      ├─ ShoppingCart.java
+      ├─ Search.java
+      └─ Sorts.java
+   ├─ io/
+      └─ RecipeJsonStore.java
+   ├─ ui/
+      └─ ConsoleUI.java   (or JavaFXUI.java, or WebUI adapter later)
 ```
 
 The files and workflow in this repository were created with the help of a [ChatGPT Session](https://chatgpt.com/share/696a5966-6000-8011-a070-388192adf348).
