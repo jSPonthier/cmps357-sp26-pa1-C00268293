@@ -29,7 +29,7 @@
   - `scaleToServings()` scales amounts correctly and updates `servings`.
   - `formatAmount()` produces expected strings for representative inputs.
 - Consider small API/refactor improvements:
-  - Add `toPrettyString()` to satisfy SPEC without changing `Main`.
+  - Consider a consistency change for `toPrettyString()` vs. `toString()` to satisfy original SPEC. Perhaps a simple wrapper function.
   - Move ingredient pair into a small `Ingredient` class (`name`, `amount`) instead of parallel lists (optional improvement for readability/maintenance).
   - Use `System.err` for debug messages in `addIngredient` or document current behavior.
 
