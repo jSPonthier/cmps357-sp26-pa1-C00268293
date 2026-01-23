@@ -18,14 +18,11 @@
 - Implemented `toString()` (prints name, servings, and ingredient lines).
 - Implemented `formatAmount(double)` to print integers without decimals and otherwise up to 2 decimals (rounding as specified).
 - Verified `Main` runs and output matches `SPEC.md` expected output.
+- Added minimal tests in [test/RecipeTest.java](test/RecipeTest.java) covering count, scaling, and amount formatting.
 
 ## Remaining / Suggested tasks
 - Close SPEC/API gap: add `public String toPrettyString()` delegating to `toString()` and document both in code and [`docs/SPEC.md`](docs/SPEC.md) if needed.
 - Add Javadoc for the remaining public methods in [src/Recipe.java](src/Recipe.java) (`toString()`, `scaleToServings(int)`) for clarity.
-- Seed a minimal test harness (e.g., JUnit) to assert:
-  - `totalIngredientCount()` returns correct count.
-  - `scaleToServings()` scales amounts correctly and updates `servings`.
-  - `formatAmount()` produces expected strings for representative inputs (ints, 1-dec, 2-dec, trailing zeros).
 - Tidy `addIngredient`: drop or move debug prints to `System.err`; optionally return a boolean to signal rejection without throwing.
 - Optional future cleanup: replace parallel lists with a small `Ingredient` value object; stub upcoming classes (`RecipeBook`, search/sort helpers, shopping cart aggregator, JSON store, console UI) with signatures only to align with [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
@@ -35,6 +32,10 @@ To compile and run locally:
 ```bash
 javac -d bin src\*.java
 java -cp bin Main
+
+# compile and run tests (no external deps)
+javac -d bin -cp bin src\*.java test\RecipeTest.java
+java -cp bin RecipeTest
 ```
 
 ## File references
