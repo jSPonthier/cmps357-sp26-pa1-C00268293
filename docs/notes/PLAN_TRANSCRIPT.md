@@ -1,5 +1,7 @@
 # Plan Transcript
 
+Overview: This log captures planning for Stage 1: closing the `toPrettyString` spec/API gap, adding Javadoc and sanity tests for `Recipe`, wiring VS Code tasks/launch configs for `RecipeTest`, and tracking stage progress and documentation placement.
+
 ## Chat GPT Session
 [This session](https://chatgpt.com/share/6972a438-2e10-8011-9a61-eef40179e2c6)  was used to begin the `app-planning` work.
 
@@ -192,7 +194,7 @@ Made changes.
 
 User: Add `Progress` notes for each stage, indicate we are in stage 1
 
-GitHub Copilot: Read [STAGES.md](docs/STAGES.md)
+GitHub Copilot: Read [STAGES.md](/docs/STAGES.md)
 
 Using "Apply Patch"
 
@@ -233,3 +235,16 @@ Here’s a quick location review:
 - PLAN_TRANSCRIPT.md — this is a chat/log; consider moving to docs (or `docs/notes/`) to declutter the root.
 - LEARNING_GIT.MD — course meta; could live under docs (e.g., `docs/LEARNING_GIT.md`) to keep root focused on the app.
 - SPEC.md, ARCHITECTURE.md, DATA_MODEL.md, STAGES.md — all belong together under docs; no move needed.
+
+---
+
+User: Update this file to give an overview at the top
+
+Read [PLAN_TRANSCRIPT.md](/docs/notes/PLAN_TRANSCRIPT.md)
+
+Using "Apply Patch"
+
+
+Added a concise overview at the top of PLAN_TRANSCRIPT.md summarizing the Stage 1 focus: closing the `toPrettyString` spec/API gap, adding Recipe Javadoc and sanity tests, wiring VS Code tasks/launch configs for `RecipeTest`, and tracking stage progress and doc placement.
+
+Made changes.
