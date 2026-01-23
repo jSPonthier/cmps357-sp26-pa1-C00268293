@@ -63,13 +63,17 @@ public class Recipe {
         return ingredientNames.size();
     }
 
+    /**
+     * Scales all ingredient amounts proportionally to match {@code newServings}.
+     *
+     * <p>Multiplies each ingredient's amount by the ratio of {@code newServings}
+     * to the current servings. Stored amounts are not rounded; precision is
+     * maintained for subsequent scaling operations.
+     *
+     * @param newServings the target number of servings; must be positive
+     * @throws IllegalArgumentException if {@code newServings} is not positive
+     */
     public void scaleToServings(int newServings) {
-        /**
-         * Scales all ingredient amounts proportionally to match {@code newServings}.
-         *
-         * @param newServings the target number of servings; must be positive
-         * @throws IllegalArgumentException if {@code newServings} is not positive
-         */
         if (newServings <= 0) {
             throw new IllegalArgumentException("newServings must be positive");
         }
@@ -83,6 +87,23 @@ public class Recipe {
         this.servings = newServings;
     }
 
+    /**
+     * Returns a multi-line string representation of this recipe.
+     *
+     * <p>Format:
+     * <pre>
+     * &lt;name&gt; (serves &lt;servings&gt;)
+     * - &lt;amount&gt; &lt;ingredient&gt;
+     * - &lt;amount&gt; &lt;ingredient&gt;
+     * ...
+     * </pre>
+     *
+     * <p>Ingredient amounts are formatted according to the formatting rules:
+     * integer values display without decimals, non-integers display with up to
+     * two decimals with trailing zeros trimmed.
+     *
+     * @return a formatted string representation of the recipe
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(" (serves ").append(servings).append(")\n");

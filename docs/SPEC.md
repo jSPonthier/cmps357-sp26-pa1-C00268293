@@ -21,6 +21,7 @@ You must implement:
 - `addIngredient(String ingredientName, double amount)`
 - `scaleToServings(int newServings)`
 - `toString()`
+- `toPrettyString()`
 - `totalIngredientCount()`
 
 ### addIngredient
@@ -44,6 +45,10 @@ Format:
 - <amount> <ingredient>
 - <amount> <ingredient>
 ...
+
+### toPrettyString
+Returns a user-friendly multi-line string representation of the recipe.
+Currently delegates to `toString()` for Day-1 simplicity.
 
 ## Recipe Collection Features
 Beyond a single recipe, the application must support:
