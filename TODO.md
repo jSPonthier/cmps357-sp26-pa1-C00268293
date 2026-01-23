@@ -19,12 +19,26 @@
 - Implemented `formatAmount(double)` to print integers without decimals and otherwise up to 2 decimals (rounding as specified).
 - Verified `Main` runs and output matches `SPEC.md` expected output.
 - Added minimal tests in [test/RecipeTest.java](test/RecipeTest.java) covering count, scaling, and amount formatting.
+ - Added `toPrettyString()` delegating to `toString()`.
+ - Switched debug prints in `addIngredient` from `System.out` to `System.err` so normal output isn't polluted.
+ - Expanded tests in [test/RecipeTest.java](test/RecipeTest.java) to cover `toPrettyString()`, additional scaling edge-cases, and `formatAmount` behavior.
+ - All tests pass locally via the existing build tasks.
 
 ## Remaining / Suggested tasks
 - Close SPEC/API gap: add `public String toPrettyString()` delegating to `toString()` and document both in code and [`docs/SPEC.md`](docs/SPEC.md) if needed.
 - Add Javadoc for the remaining public methods in [src/Recipe.java](src/Recipe.java) (`toString()`, `scaleToServings(int)`) for clarity.
 - Tidy `addIngredient`: drop or move debug prints to `System.err`; optionally return a boolean to signal rejection without throwing.
 - Optional future cleanup: replace parallel lists with a small `Ingredient` value object; stub upcoming classes (`RecipeBook`, search/sort helpers, shopping cart aggregator, JSON store, console UI) with signatures only to align with [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+Current status notes:
+- `toPrettyString()` added and documented in code.
+- Debug prints moved to `System.err` (done).
+- Tests expanded and passing (see [test/RecipeTest.java](test/RecipeTest.java)).
+
+Next recommended tasks (priority order):
+- Add Javadoc for `toString()` and `scaleToServings(int)` in [src/Recipe.java](src/Recipe.java).
+- Update [`docs/SPEC.md`](docs/SPEC.md) to reflect the current API/format, or vice-versa.
+- Commit changes and run CI / the build tasks to ensure green pipeline.
 
 ## Verification commands
 To compile and run locally:
