@@ -33,7 +33,7 @@ Implement the foundational data model and required behavior for a single recipe.
 - Invalid inputs do not corrupt internal state.
 
 **Progress**
-- In progress (current stage)
+- Complete (Stage 1 fully implemented and tested)
 
 ---
 
@@ -54,12 +54,12 @@ Manage multiple recipes as a collection.
   - Retrieve all recipes
 
 **Acceptance Criteria**
-- Recipe list is never null.
-- Removal logic correctly identifies recipes by name.
-- No implicit sorting is enforced at the data level.
+- Recipe list is never null. ✓
+- Removal logic correctly identifies recipes by name. ✓
+- No implicit sorting is enforced at the data level. ✓
 
 **Progress**
-- Not started
+- Complete (RecipeBook class created with all required operations; Ingredient class created for future use)
 
 ---
 
@@ -77,12 +77,12 @@ Allow users to locate and view recipes efficiently.
 - Front-end sorting of recipes by name
 
 **Acceptance Criteria**
-- Searching does not mutate stored data.
-- Sorting is applied only when presenting results.
-- Recipe insertion order remains unchanged internally.
+- Searching does not mutate stored data. ✓
+- Sorting is applied only when presenting results. ✓
+- Recipe insertion order remains unchanged internally. ✓
 
 **Progress**
-- Not started
+- Complete (Search implemented in RecipeBook; RecipeSorter utility created for sorting)
 
 ---
 
