@@ -73,9 +73,9 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
 - Separation of storage, querying, and presentation logic
 - Predictable and stable search and sort behavior
 
-**Deliverables**
+### Deliverables
 
-### Searching
+#### Searching
 - **Case-insensitive recipe name search**
   - Partial (substring) matches
   - Leading and trailing whitespace in queries is ignored
@@ -88,7 +88,7 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
     (recipe name or ingredient names)
 - Search operations return a new list and never modify stored recipes.
 
-### Sorting
+#### Sorting
 - **Front-end sorting by recipe name**
   - Case-insensitive ordering
   - Supports ascending and descending order
@@ -96,7 +96,7 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
   - Secondary comparison used when names compare equal ignoring case
   - Sorting does not permanently reorder stored data
 
-**Acceptance Criteria**
+### Acceptance Criteria
 - Searching does not mutate stored data. ✓
 - Sorting is applied only when presenting results. ✓
 - Recipe insertion order remains unchanged internally. ✓
@@ -104,7 +104,7 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
 - Ingredient-based and multi-token searches return correct results. ◻︎
 - Stable secondary sort behavior is implemented. ◻︎
 
-**Progress**
+### Progress
 - Partially complete  
   - Case-insensitive name search implemented in `RecipeBook`
   - Front-end name-based sorting implemented via `RecipeSorter`
