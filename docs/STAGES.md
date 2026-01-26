@@ -193,14 +193,14 @@ Persist and restore application state using files.
   - Validate data types and value ranges
 - **Error handling**
   - Detect and report malformed JSON
-  - Handle missing or invalid fields according to documented policy (see Validation Policy in DATA_MODEL.md)
+  - Handle missing or invalid fields according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md))
   - Provide meaningful error messages for debugging
 
 ### Acceptance Criteria
 - Recipe and ingredient order is preserved.
 - Stored numeric values remain unformatted.
 - Loaded data is validated before use.
-- Invalid data is handled according to documented policy (see Validation Policy in DATA_MODEL.md).
+- Invalid data is handled according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md)).
 
 ### Progress
 - Not started
