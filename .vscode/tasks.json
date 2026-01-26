@@ -1,0 +1,36 @@
+{
+  // VS Code tasks for compiling and running the manual Recipe tests.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-tests",
+      "type": "shell",
+      "command": "javac",
+      "args": [
+        "-d",
+        "bin",
+        "-cp",
+        "bin",
+        "src/*.java",
+        "test/RecipeTest.java"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "run-tests",
+      "type": "shell",
+      "command": "java",
+      "args": [
+        "-cp",
+        "bin",
+        "RecipeTest"
+      ],
+      "dependsOn": "build-tests",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
