@@ -123,16 +123,35 @@ Generate a combined ingredient list from multiple recipes.
 - Derived data views
 - Normalization and aggregation rules
 
-**Deliverables**
-- Shopping cart aggregation logic
-- Ingredient amount summation across recipes
+### Deliverables
 
-**Acceptance Criteria**
+#### Shopping Cart Logic
+- **Aggregate ingredients from multiple recipes**
+  - Accept a collection of recipes as input
+  - Produce a single combined ingredient list
+- **Name normalization**
+  - Case-insensitive matching of ingredient names
+  - Ingredients with matching normalized names are combined
+- **Amount summation**
+  - Add quantities for ingredients with the same normalized name
+  - Preserve ingredient units (if applicable)
+- **Non-destructive operation**
+  - Original recipes remain unchanged
+  - Returns a new data structure representing the aggregated list
+
+#### Output Formatting
+- **Consistent amount display**
+  - Follow the same formatting rules as Recipe output
+  - Handle trailing zeros appropriately
+- **Sorted presentation**
+  - Ingredients displayed in a consistent order (e.g., alphabetical by name)
+
+### Acceptance Criteria
 - Ingredients with the same normalized name are summed.
 - Aggregation does not modify original recipes.
 - Output formatting follows the same amount rules as recipes.
 
-**Progress**
+### Progress
 - Not started
 
 ---
@@ -147,17 +166,42 @@ Persist and restore application state using files.
 - Validation on load
 - Isolation of I/O logic
 
-**Deliverables**
-- JSON writer for recipe lists
-- JSON reader for recipe lists
+### Deliverables
 
-**Acceptance Criteria**
+#### JSON Writer
+- **Serialize RecipeBook to JSON**
+  - Convert recipe collection to valid JSON format
+  - Preserve all recipe and ingredient data
+- **Maintain structure**
+  - Recipe order is preserved
+  - Ingredient order within each recipe is preserved
+- **Numeric precision**
+  - Store ingredient amounts without formatting
+  - Preserve full numeric precision for accurate restoration
+- **File output**
+  - Write JSON to specified file path
+  - Handle I/O errors gracefully
+
+#### JSON Reader
+- **Deserialize JSON to RecipeBook**
+  - Parse valid JSON files into recipe objects
+  - Reconstruct recipe collection with original ordering
+- **Validation**
+  - Validate JSON structure before loading
+  - Check for required fields (recipe name, servings, ingredients)
+  - Validate data types and value ranges
+- **Error handling**
+  - Detect and report malformed JSON
+  - Handle missing or invalid fields according to documented policy
+  - Provide meaningful error messages for debugging
+
+### Acceptance Criteria
 - Recipe and ingredient order is preserved.
 - Stored numeric values remain unformatted.
 - Loaded data is validated before use.
 - Invalid data is handled according to documented policy.
 
-**Progress**
+### Progress
 - Not started
 
 ---
@@ -171,21 +215,55 @@ Provide a usable front-end for interacting with the system.
 - Coordinating existing components
 - Clear separation between UI and model logic
 
-**Deliverables**
-- Console-based UI or equivalent
-- Commands for:
-  - Listing recipes
-  - Searching
-  - Viewing recipe details
-  - Building a shopping cart
-  - Loading and saving data
+### Deliverables
 
-**Acceptance Criteria**
+#### User Interface
+- **Console-based interaction**
+  - Command-line menu or prompt-based interface
+  - Clear display of available commands
+  - User-friendly input handling
+
+#### Core Commands
+- **List all recipes**
+  - Display all recipes in the collection
+  - Apply sorting (using RecipeSorter)
+  - Show summary information (name, servings)
+- **Search recipes**
+  - Search by recipe name (case-insensitive, partial match)
+  - Search by ingredient
+  - Multi-token search support
+  - Display search results with count
+- **View recipe details**
+  - Select a recipe by name or index
+  - Display full recipe with all ingredients and amounts
+  - Show formatted output using Recipe.toString()
+- **Build shopping cart**
+  - Select multiple recipes for aggregation
+  - Generate combined ingredient list
+  - Display aggregated results
+
+#### Data Management Commands
+- **Load recipes from file**
+  - Specify file path
+  - Load and validate JSON data
+  - Report success or errors
+- **Save recipes to file**
+  - Specify output file path
+  - Serialize current recipe collection
+  - Confirm successful save
+
+#### Input Handling
+- **Robust parsing**
+  - Handle invalid commands gracefully
+  - Provide helpful error messages
+  - Allow users to retry or exit
+
+### Acceptance Criteria
 - UI depends on service and model layers, not persistence internals.
 - All previously implemented features are accessible through the UI.
 - Sorting and formatting rules are consistently applied.
 
-**Progress**
+### Progress
 - Not started
 
 ---
