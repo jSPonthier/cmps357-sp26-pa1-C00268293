@@ -89,11 +89,16 @@ By the end of this sequence, you should be comfortable reading a spec, using an 
 
 ```
 cmps357-sp26-first-example/
+├─ AUTHORS.md
+├─ README.md
 ├─ docs/
 │  ├─ SPEC.md
 │  ├─ ARCHITECTURE.md
 │  ├─ DATA_MODEL.md
-│  └─ STAGES.md
+│  ├─ STAGES.md
+│  ├─ TRANSCRIPT.md
+│  ├─ REFLECTION.md
+│  └─ EXAMPLES.md
 └─ src/
    └─ cmps357/
       └─ sp26/
