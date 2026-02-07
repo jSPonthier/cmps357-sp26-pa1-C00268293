@@ -3,12 +3,17 @@
   "configurations": [
     {
       "type": "java",
+      "name": "IngredientTest",
+      "request": "launch",
+      "mainClass": "IngredientTest",
+      "projectName": "cmps357-sp26-pa1-C00268293_47aa7656"
+    },
+    {
+      "type": "java",
       "name": "Run RecipeTest",
       "request": "launch",
       "mainClass": "RecipeTest",
-      "classPaths": [
-        "${workspaceFolder}/bin"
-      ],
+      "classPaths": ["${workspaceFolder}/bin"],
       "preLaunchTask": "run-tests"
     },
     {
@@ -16,9 +21,23 @@
       "name": "Run Main",
       "request": "launch",
       "mainClass": "Main",
-      "classPaths": [
-        "${workspaceFolder}/bin"
-      ],
+      "classPaths": ["${workspaceFolder}/bin"],
+      "preLaunchTask": "build-tests"
+    },
+    {
+      "type": "java",
+      "name": "Run Stage3Demo",
+      "request": "launch",
+      "mainClass": "Stage3Demo",
+      "classPaths": ["${workspaceFolder}/bin"],
+      "preLaunchTask": "build-tests"
+    },
+    {
+      "type": "java",
+      "name": "Run Stage4Demo",
+      "request": "launch",
+      "mainClass": "Stage4Demo",
+      "classPaths": ["${workspaceFolder}/bin"],
       "preLaunchTask": "build-tests"
     }
   ]

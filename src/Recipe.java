@@ -1,5 +1,6 @@
 // src/Recipe.java
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe {
     private final String name;
@@ -49,6 +50,31 @@ public class Recipe {
         ingredientAmounts.add(amount);
     }
 
+
+    /**
+     * Returns a copy of the list of ingredient names in this recipe.
+     *
+     * <p>The returned list is a defensive copy; modifications do not affect
+     * the recipe's internal state. Use for read-only operations such as search.
+     *
+     * @return a new list of ingredient names in the order they were added
+     */
+    public List<String> getIngredientNames() {
+        return new ArrayList<>(ingredientNames);
+    }
+
+    /**
+     * Returns a copy of the list of ingredient amounts in this recipe.
+     *
+     * <p>The returned list parallels {@link #getIngredientNames()}; index i
+     * corresponds to the amount for the ingredient at getIngredientNames().get(i).
+     * Use for read-only operations such as shopping cart aggregation.
+     *
+     * @return a new list of ingredient amounts in the order they were added
+     */
+    public List<Double> getIngredientAmounts() {
+        return new ArrayList<>(ingredientAmounts);
+    }
 
     /**
      * Returns the number of ingredient entries in this recipe.

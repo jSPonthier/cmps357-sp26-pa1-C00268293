@@ -101,16 +101,17 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
 - Sorting is applied only when presenting results. ✓
 - Recipe insertion order remains unchanged internally. ✓
 - Case-insensitive name search (partial matches) is supported. ✓
-- Ingredient-based and multi-token searches return correct results. ◻︎
-- Stable secondary sort behavior is implemented. ◻︎
+- Ingredient-based and multi-token searches return correct results. ✓
+- Stable secondary sort behavior is implemented. ✓
 
 ### Progress
-- Partially complete  
-  - Case-insensitive name search implemented in `RecipeBook`
-  - Front-end name-based sorting implemented via `RecipeSorter`
-  - Ingredient-based search not yet implemented
-  - Multi-token search not yet implemented
-  - Secondary sort key for deterministic ordering not yet implemented
+- Complete
+  - Case-insensitive name search with query trimming in `RecipeBook.searchByName`
+  - Ingredient-based search in `RecipeBook.searchByIngredient`
+  - Multi-token search in `RecipeBook.search`
+  - Front-end name-based sorting (A–Z and Z–A) in `RecipeSorter.sortByName`
+  - Secondary sort key (case-sensitive name) for deterministic ordering
+  - Demo: `Stage3Demo.java`
 
 ---
 
@@ -147,13 +148,18 @@ Generate a combined ingredient list from multiple recipes.
   - Ingredients displayed in a consistent order (e.g., alphabetical by name)
 
 ### Acceptance Criteria
-- Ingredients with the same normalized name are summed.
-- Aggregation does not modify original recipes.
-- Output formatting follows the same amount rules as recipes.
-- Shopping cart ingredients are displayed in a consistent order.
+- Ingredients with the same normalized name are summed. ✓
+- Aggregation does not modify original recipes. ✓
+- Output formatting follows the same amount rules as recipes. ✓
+- Shopping cart ingredients are displayed in a consistent order. ✓
 
 ### Progress
-- Not started
+- Complete
+  - `ShoppingCart.aggregate(List<Recipe>)` combines ingredients from multiple recipes
+  - Case-insensitive name normalization; amounts summed for matching names
+  - Same formatting rules as Recipe (formatAmount)
+  - Output sorted alphabetically by ingredient name
+  - Demo: `Stage4Demo.java`
 
 ---
 
