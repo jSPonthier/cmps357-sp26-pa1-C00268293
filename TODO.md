@@ -57,11 +57,11 @@
 - [x] Validate loaded data (per DATA_MODEL Validation Policy)
 - [x] Handle errors gracefully (IOException with descriptive messages)
 
-### Stage 6: User Interface Integration
-- [ ] Create console-based UI
-- [ ] Commands for listing, searching, viewing recipes
-- [ ] Shopping cart generation
-- [ ] Load/save functionality
+### Stage 6: User Interface Integration (COMPLETE)
+- [x] Create console-based UI (`ConsoleUI`)
+- [x] Commands for listing, searching, viewing recipes
+- [x] Shopping cart generation
+- [x] Load/save functionality
 
 ### Stage 7: Refinement and Extension
 - [ ] Optional: Refactor Recipe to use Ingredient class instead of parallel lists

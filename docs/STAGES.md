@@ -332,16 +332,19 @@ Goodbye!
 ```
 
 ### Acceptance Criteria
-- UI depends on service and model layers, not persistence internals.
-- All previously implemented features are accessible through the UI.
-- Sorting and formatting rules are consistently applied.
- - Search commands return correct results consistent with Stage 3.
- - Shopping cart aggregation returns correct results consistent with Stage 4.
- - Load and save commands report success and errors per the Validation Policy.
- - Invalid input does not crash the program; users receive helpful messages and can retry.
+- UI depends on service and model layers, not persistence internals. ✓
+- All previously implemented features are accessible through the UI. ✓
+- Sorting and formatting rules are consistently applied. ✓
+- Search commands return correct results consistent with Stage 3. ✓
+- Shopping cart aggregation returns correct results consistent with Stage 4. ✓
+- Load and save commands report success and errors per the Validation Policy. ✓
+- Invalid input does not crash the program; users receive helpful messages and can retry. ✓
 
 ### Progress
-- Not started
+- Complete
+  - `ConsoleUI` with menu-driven interface
+  - Commands: list, search, view details, shopping cart, load, save, exit
+  - Demo: `Stage6Demo.java`; run `ConsoleUI` for interactive use
 
 ---
 

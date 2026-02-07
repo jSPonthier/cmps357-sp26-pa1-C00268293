@@ -47,6 +47,22 @@
       "mainClass": "Stage5Demo",
       "classPaths": ["${workspaceFolder}/bin"],
       "preLaunchTask": "build-tests"
+    },
+    {
+      "type": "java",
+      "name": "Run ConsoleUI",
+      "request": "launch",
+      "mainClass": "ConsoleUI",
+      "classPaths": ["${workspaceFolder}/bin"],
+      "preLaunchTask": "build-tests"
+    },
+    {
+      "type": "java",
+      "name": "Run Stage6Demo",
+      "request": "launch",
+      "mainClass": "Stage6Demo",
+      "classPaths": ["${workspaceFolder}/bin"],
+      "preLaunchTask": "build-tests"
     }
   ]
 }

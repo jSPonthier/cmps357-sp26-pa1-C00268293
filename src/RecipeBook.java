@@ -45,13 +45,7 @@ public class RecipeBook {
         if (recipeName == null) {
             return false;
         }
-        return recipes.removeIf(r -> {
-            try {
-                return getRecipeName(r).equals(recipeName);
-            } catch (ReflectiveOperationException e) {
-                return false;
-            }
-        });
+        return recipes.removeIf(r -> r.getName().equals(recipeName));
     }
 
     /**
@@ -76,6 +70,13 @@ public class RecipeBook {
     }
 
     /**
+     * Removes all recipes from this recipe book.
+     */
+    public void clear() {
+        recipes.clear();
+    }
+
+    /**
      * Searches for recipes whose name contains the specified query string.
      *
      * <p>The search is case-insensitive and matches partial names.
@@ -97,13 +98,8 @@ public class RecipeBook {
         List<Recipe> results = new ArrayList<>();
         
         for (Recipe r : recipes) {
-            try {
-                String recipeName = getRecipeName(r);
-                if (recipeName.toLowerCase().contains(lowerQuery)) {
-                    results.add(r);
-                }
-            } catch (ReflectiveOperationException e) {
-                // Skip recipes we can't access
+            if (r.getName().toLowerCase().contains(lowerQuery)) {
+                results.add(r);
             }
         }
         
@@ -182,8 +178,7 @@ public class RecipeBook {
      * Checks if a recipe matches all search tokens (in name or ingredients).
      */
     private boolean matchesAllTokens(Recipe r, String[] tokens) {
-        try {
-            String recipeName = getRecipeName(r).toLowerCase();
+        String recipeName = r.getName().toLowerCase();
             List<String> ingredientNames = r.getIngredientNames();
             
             for (String token : tokens) {
@@ -202,18 +197,5 @@ public class RecipeBook {
                 }
             }
             return true;
-        } catch (ReflectiveOperationException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Helper method to get recipe name using reflection.
-     * This is needed because Recipe's name field is private.
-     */
-    private String getRecipeName(Recipe recipe) throws ReflectiveOperationException {
-        java.lang.reflect.Field nameField = Recipe.class.getDeclaredField("name");
-        nameField.setAccessible(true);
-        return (String) nameField.get(recipe);
     }
 }

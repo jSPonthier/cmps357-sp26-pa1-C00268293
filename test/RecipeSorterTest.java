@@ -22,9 +22,9 @@ public class RecipeSorterTest {
         List<Recipe> sorted = RecipeSorter.sortByName(recipes);
         
         assertEquals("sorted size", 3, sorted.size());
-        assertEquals("first recipe", "Apple Pie", getRecipeName(sorted.get(0)));
-        assertEquals("second recipe", "Muffins", getRecipeName(sorted.get(1)));
-        assertEquals("third recipe", "Zebra Cake", getRecipeName(sorted.get(2)));
+        assertEquals("first recipe", "Apple Pie", sorted.get(0).getName());
+        assertEquals("second recipe", "Muffins", sorted.get(1).getName());
+        assertEquals("third recipe", "Zebra Cake", sorted.get(2).getName());
     }
 
     private static void testSortByNameCaseInsensitive() throws Exception {
@@ -35,9 +35,9 @@ public class RecipeSorterTest {
         
         List<Recipe> sorted = RecipeSorter.sortByName(recipes);
         
-        assertEquals("case-insensitive first", "Apple Tart", getRecipeName(sorted.get(0)));
-        assertEquals("case-insensitive second", "banana bread", getRecipeName(sorted.get(1)));
-        assertEquals("case-insensitive third", "Cherry Pie", getRecipeName(sorted.get(2)));
+        assertEquals("case-insensitive first", "Apple Tart", sorted.get(0).getName());
+        assertEquals("case-insensitive second", "banana bread", sorted.get(1).getName());
+        assertEquals("case-insensitive third", "Cherry Pie", sorted.get(2).getName());
     }
 
     private static void testSortByNameDoesNotMutate() throws Exception {
@@ -45,11 +45,11 @@ public class RecipeSorterTest {
         recipes.add(new Recipe("Zebra", 1));
         recipes.add(new Recipe("Apple", 1));
         
-        String originalFirst = getRecipeName(recipes.get(0));
+        String originalFirst = recipes.get(0).getName();
         
         RecipeSorter.sortByName(recipes);
         
-        String afterSortFirst = getRecipeName(recipes.get(0));
+        String afterSortFirst = recipes.get(0).getName();
         assertEquals("original not mutated", originalFirst, afterSortFirst);
     }
 
@@ -60,12 +60,6 @@ public class RecipeSorterTest {
     }
 
     // Helper methods
-    private static String getRecipeName(Recipe recipe) throws ReflectiveOperationException {
-        java.lang.reflect.Field nameField = Recipe.class.getDeclaredField("name");
-        nameField.setAccessible(true);
-        return (String) nameField.get(recipe);
-    }
-
     private static void assertEquals(String label, String expected, String actual) {
         if (!expected.equals(actual)) {
             fail(label + " expected '" + expected + "' but was '" + actual + "'");

@@ -20,6 +20,25 @@ public class Recipe {
         this.name = name;
         this.servings = servings;
     }
+
+    /**
+     * Returns the name of this recipe.
+     *
+     * @return the recipe name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Returns the number of servings for this recipe.
+     *
+     * @return the servings count
+     */
+    public int getServings() {
+        return servings;
+    }
+
     /**
      * Adds an ingredient and its amount to the recipe.
      *

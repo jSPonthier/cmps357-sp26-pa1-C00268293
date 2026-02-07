@@ -74,8 +74,8 @@ public class RecipeJsonStore {
 
     private static String toJsonRecipe(Recipe r) {
         StringBuilder sb = new StringBuilder();
-        sb.append("{\"name\":").append(escapeJson(getRecipeName(r)));
-        sb.append(",\"servings\":").append(getRecipeServings(r));
+        sb.append("{\"name\":").append(escapeJson(r.getName()));
+        sb.append(",\"servings\":").append(r.getServings());
         sb.append(",\"ingredients\":[");
         List<String> names = r.getIngredientNames();
         List<Double> amounts = r.getIngredientAmounts();
@@ -104,26 +104,6 @@ public class RecipeJsonStore {
         }
         sb.append('"');
         return sb.toString();
-    }
-
-    private static String getRecipeName(Recipe r) {
-        try {
-            java.lang.reflect.Field f = Recipe.class.getDeclaredField("name");
-            f.setAccessible(true);
-            return (String) f.get(r);
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Cannot access Recipe name", e);
-        }
-    }
-
-    private static int getRecipeServings(Recipe r) {
-        try {
-            java.lang.reflect.Field f = Recipe.class.getDeclaredField("servings");
-            f.setAccessible(true);
-            return (Integer) f.get(r);
-        } catch (ReflectiveOperationException e) {
-            throw new RuntimeException("Cannot access Recipe servings", e);
-        }
     }
 
     // --- JSON Deserialization ---
