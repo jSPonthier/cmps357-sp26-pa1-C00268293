@@ -50,12 +50,12 @@
 - [x] Sum amounts for matching ingredients
 - [x] Apply formatting rules to aggregated amounts
 
-### Stage 5: Persistence (JSON I/O)
-- [ ] Implement JSON writer for recipe lists
-- [ ] Implement JSON reader for recipe lists
-- [ ] Preserve recipe and ingredient order
-- [ ] Validate loaded data
-- [ ] Handle errors gracefully
+### Stage 5: Persistence (JSON I/O) (COMPLETE)
+- [x] Implement JSON writer for recipe lists (`RecipeJsonStore.save`)
+- [x] Implement JSON reader for recipe lists (`RecipeJsonStore.load`)
+- [x] Preserve recipe and ingredient order
+- [x] Validate loaded data (per DATA_MODEL Validation Policy)
+- [x] Handle errors gracefully (IOException with descriptive messages)
 
 ### Stage 6: User Interface Integration
 - [ ] Create console-based UI

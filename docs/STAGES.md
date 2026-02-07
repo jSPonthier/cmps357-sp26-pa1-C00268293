@@ -203,13 +203,17 @@ Persist and restore application state using files.
   - Provide meaningful error messages for debugging
 
 ### Acceptance Criteria
-- Recipe and ingredient order is preserved.
-- Stored numeric values remain unformatted.
-- Loaded data is validated before use.
-- Invalid data is handled according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md)).
+- Recipe and ingredient order is preserved. ✓
+- Stored numeric values remain unformatted. ✓
+- Loaded data is validated before use. ✓
+- Invalid data is handled according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md)). ✓
 
 ### Progress
-- Not started
+- Complete
+  - `RecipeJsonStore.save(RecipeBook, String)` writes JSON to file
+  - `RecipeJsonStore.load(String)` loads and validates JSON
+  - Extra fields ignored; validation follows DATA_MODEL policy
+  - Demo: `Stage5Demo.java`
 
 ---
 

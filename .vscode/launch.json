@@ -39,6 +39,14 @@
       "mainClass": "Stage4Demo",
       "classPaths": ["${workspaceFolder}/bin"],
       "preLaunchTask": "build-tests"
+    },
+    {
+      "type": "java",
+      "name": "Run Stage5Demo",
+      "request": "launch",
+      "mainClass": "Stage5Demo",
+      "classPaths": ["${workspaceFolder}/bin"],
+      "preLaunchTask": "build-tests"
     }
   ]
 }
