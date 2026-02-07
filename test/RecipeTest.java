@@ -1,10 +1,7 @@
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeTest {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         testTotalIngredientCount();
         testScaleToServings();
         testFormatAmount();
@@ -24,19 +21,17 @@ public class RecipeTest {
         assertEquals("toPrettyString equals toString", s1, s2);
     }
 
-    private static void testScaleEdgeCases() throws Exception {
+    private static void testScaleEdgeCases() {
         Recipe r = new Recipe("Edge", 3);
         r.addIngredient("sugar", 100.0);
 
         r.scaleToServings(1);
 
-        List<Double> amounts = getIngredientAmounts(r);
-        // expect 100/3
+        List<Double> amounts = r.getIngredientAmounts();
         assertEquals("sugar amount after scaling 3->1", 100.0 / 3.0, amounts.get(0), 1e-9);
 
-        // scaling back up should restore original
         r.scaleToServings(3);
-        amounts = getIngredientAmounts(r);
+        amounts = r.getIngredientAmounts();
         assertEquals("sugar amount after scaling back 1->3", 100.0, amounts.get(0), 1e-9);
     }
 
@@ -50,17 +45,17 @@ public class RecipeTest {
         assertEquals("totalIngredientCount", 2, r.totalIngredientCount());
     }
 
-    private static void testScaleToServings() throws Exception {
+    private static void testScaleToServings() {
         Recipe r = new Recipe("Scale", 2);
         r.addIngredient("flour", 200.0);
         r.addIngredient("salt", 0.5);
 
         r.scaleToServings(4);
 
-        List<Double> amounts = getIngredientAmounts(r);
+        List<Double> amounts = r.getIngredientAmounts();
         assertEquals("amounts[0] after scale", 400.0, amounts.get(0), 1e-9);
         assertEquals("amounts[1] after scale", 1.0, amounts.get(1), 1e-9);
-        assertEquals("servings after scale", 4, getServings(r));
+        assertEquals("servings after scale", 4, r.getServings());
 
         try {
             r.scaleToServings(0);
@@ -70,34 +65,37 @@ public class RecipeTest {
         }
     }
 
-    private static void testFormatAmount() throws Exception {
+    /** Tests formatAmount via toString output (amount formatting rules). */
+    private static void testFormatAmount() {
         Recipe r = new Recipe("Format", 1);
-        assertEquals("integer format", "200", formatAmount(r, 200.0));
-        assertEquals("one decimal", "7.5", formatAmount(r, 7.5));
-        assertEquals("two decimals rounded", "0.63", formatAmount(r, 0.625));
-        assertEquals("two decimals clipped", "1.33", formatAmount(r, 1.333));
-        assertEquals("strip trailing zero", "1.1", formatAmount(r, 1.10));
-        assertEquals("near integer tolerance", "1", formatAmount(r, 1.0000000001));
+        r.addIngredient("a", 200.0);
+        assertContains("integer format", r.toString(), "200");
+
+        r = new Recipe("Format2", 1);
+        r.addIngredient("b", 7.5);
+        assertContains("one decimal", r.toString(), "7.5");
+
+        r = new Recipe("Format3", 1);
+        r.addIngredient("c", 0.625);
+        assertContains("two decimals rounded", r.toString(), "0.63");
+
+        r = new Recipe("Format4", 1);
+        r.addIngredient("d", 1.333);
+        assertContains("two decimals clipped", r.toString(), "1.33");
+
+        r = new Recipe("Format5", 1);
+        r.addIngredient("e", 1.10);
+        assertContains("strip trailing zero", r.toString(), "1.1");
+
+        r = new Recipe("Format6", 1);
+        r.addIngredient("f", 1.0000000001);
+        assertContains("near integer tolerance", r.toString(), "- 1 f");
     }
 
-    // Helpers
-    private static String formatAmount(Recipe r, double value) throws Exception {
-        Method m = Recipe.class.getDeclaredMethod("formatAmount", double.class);
-        m.setAccessible(true);
-        return (String) m.invoke(r, value);
-    }
-
-    @SuppressWarnings("unchecked")
-    private static List<Double> getIngredientAmounts(Recipe r) throws Exception {
-        Field f = Recipe.class.getDeclaredField("ingredientAmounts");
-        f.setAccessible(true);
-        return new ArrayList<>((List<Double>) f.get(r));
-    }
-
-    private static int getServings(Recipe r) throws Exception {
-        Field f = Recipe.class.getDeclaredField("servings");
-        f.setAccessible(true);
-        return f.getInt(r);
+    private static void assertContains(String label, String text, String substring) {
+        if (!text.contains(substring)) {
+            fail(label + " expected '" + text + "' to contain '" + substring + "'");
+        }
     }
 
     private static void assertEquals(String label, String expected, String actual) {

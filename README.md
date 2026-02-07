@@ -9,6 +9,54 @@
     - Available [here](https://www.azul.com/downloads/?version=java-17-lts&package=jdk#zulu)
  - Git [Windows](https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/Git-2.52.0-64-bit.exe) [Linux](https://git-scm.com/install/linux) [macOS](https://git-scm.com/install/mac)
 
+## Setup and Execution
+
+Combined steps to create a working environment in Visual Studio Code, configure it, compile the program, and run it after cloning.
+
+### Create a Working Environment (VS Code)
+
+This project uses `.vscode/tasks.json` and `.vscode/launch.json` for build and run configuration (analogous to a Makefile or `requirements.txt` in other projects).
+
+1. **Clone the repository**  
+   ```bash
+   git clone <your-repository-url>
+   cd cmps357-sp26-pa1-C00268293
+   ```
+
+2. **Open in VS Code**  
+   - File → Open Folder, then select the cloned directory.
+
+3. **Install Extension Pack for Java** (Microsoft)  
+   - Extensions view (Ctrl+Shift+X) → search "Extension Pack for Java" → Install.
+
+4. **Configure JDK**  
+   - Ensure `JAVA_HOME` points to a Java 17+ JDK, or set it in VS Code: File → Preferences → Settings → search `java.configuration.runtimes`.
+
+5. **Accept workspace configuration**  
+   - When prompted, allow VS Code to use the `.vscode` tasks and launch configurations.
+
+### Compile the Program
+
+- **In VS Code:** Terminal → Run Build Task (or Ctrl+Shift+B / Cmd+Shift+B).  
+- **Command line:**  
+  ```bash
+  javac -d bin -cp bin src/*.java
+  ```  
+  With tests:  
+  ```bash
+  javac -d bin -cp bin src/*.java test/*.java
+  ```
+
+### Run the Program
+
+- **In VS Code:** Run and Debug panel (Ctrl+Shift+D). Choose a configuration such as Run Main, Run ConsoleUI, Run Stage2Demo, or Run RecipeTest.  
+- **Command line:**  
+  ```bash
+  java -cp bin Main
+  java -cp bin ConsoleUI
+  java -cp bin RecipeTest
+  ```
+
 ## Syllabus README Note
 
 This `README.md` should be edited to match the syllabus README description: include concise setup and execution instructions for this project. Below are Java-specific details you should keep or expand when editing this file:

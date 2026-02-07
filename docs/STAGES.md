@@ -1,10 +1,18 @@
 # STAGES
 
 ## Purpose
-This document outlines a staged implementation plan for the Recipe application.  
-Each stage introduces a small, coherent set of concepts and responsibilities, allowing the project to grow incrementally while remaining testable and understandable at every step.
+This document is a planning document created before implementation begins. It outlines a staged implementation plan for the Recipe application. Each stage introduces a small, coherent set of concepts and responsibilities, allowing the project to grow incrementally while remaining testable and understandable at every step.
 
-Stages are ordered intentionally and should be completed sequentially.
+Stages are ordered intentionally and should be completed sequentially. The checklists below are updated throughout development to indicate completed work. Both the listed tasks and their checkboxes may be revised as the program evolves.
+
+### Stage Completion Checklist
+- [x] Stage 1: Core Recipe Model
+- [x] Stage 2: Recipe Collection Management
+- [x] Stage 3: Searching and Sorting
+- [x] Stage 4: Shopping Cart Aggregation
+- [x] Stage 5: Persistence (JSON I/O)
+- [x] Stage 6: User Interface Integration
+- [x] Stage 7: Refinement and Extension
 
 ---
 
@@ -18,22 +26,18 @@ Implement the foundational data model and required behavior for a single recipe.
 - Validation
 - Numeric scaling and formatting rules
 
-**Deliverables**
-- `Ingredient` class
-- `Recipe` class with:
-  - `addIngredient(String ingredientName, double amount)`
-  - `scaleToServings(int newServings)`
-  - `totalIngredientCount()`
-  - `toString()`
+### Design Tasks Checklist
+- [x] Implement `Ingredient` class
+- [x] Implement `Recipe` class with `addIngredient(String, double)`
+- [x] Implement `scaleToServings(int)`
+- [x] Implement `totalIngredientCount()`
+- [x] Implement `toString()`
+- [x] Ingredients stored in insertion order
+- [x] Amount formatting rules applied correctly
+- [x] Scaling updates amounts proportionally without rounding stored values
+- [x] Invalid inputs do not corrupt internal state
 
-**Acceptance Criteria**
-- Ingredients are stored in insertion order.
-- Amount formatting rules are applied correctly in output.
-- Scaling updates ingredient amounts proportionally without rounding stored values.
-- Invalid inputs do not corrupt internal state.
-
-**Progress**
-- Complete (Stage 1 fully implemented and tested)
+**Progress:** Complete (Stage 1 fully implemented and tested)
 
 ---
 
@@ -46,20 +50,16 @@ Manage multiple recipes as a collection.
 - Aggregation of domain objects
 - Basic collection operations
 
-**Deliverables**
-- `RecipeBook` (or equivalent) class
-- Ability to:
-  - Add recipes
-  - Remove recipes by name
-  - Retrieve all recipes
+### Design Tasks Checklist
+- [x] Create `RecipeBook` class
+- [x] Add recipes to collection
+- [x] Remove recipes by name
+- [x] Retrieve all recipes
+- [x] Recipe list is never null
+- [x] Removal logic correctly identifies recipes by name
+- [x] No implicit sorting enforced at data level
 
-**Acceptance Criteria**
-- Recipe list is never null. ✓
-- Removal logic correctly identifies recipes by name. ✓
-- No implicit sorting is enforced at the data level. ✓
-
-**Progress**
-- Complete (RecipeBook class created with all required operations)
+**Progress:** Complete (RecipeBook class created with all required operations)
 
 ---
 
@@ -96,22 +96,17 @@ Allow users to locate, filter, and view recipes efficiently using flexible searc
   - Secondary comparison used when names compare equal ignoring case
   - Sorting does not permanently reorder stored data
 
-### Acceptance Criteria
-- Searching does not mutate stored data. ✓
-- Sorting is applied only when presenting results. ✓
-- Recipe insertion order remains unchanged internally. ✓
-- Case-insensitive name search (partial matches) is supported. ✓
-- Ingredient-based and multi-token searches return correct results. ✓
-- Stable secondary sort behavior is implemented. ✓
+### Design Tasks Checklist
+- [x] Case-insensitive name search with query trimming (`RecipeBook.searchByName`)
+- [x] Ingredient-based search (`RecipeBook.searchByIngredient`)
+- [x] Multi-token search (`RecipeBook.search`)
+- [x] Front-end sorting by name A–Z and Z–A (`RecipeSorter.sortByName`)
+- [x] Secondary sort key for deterministic ordering
+- [x] Search operations return new list; do not mutate stored data
+- [x] Sorting applied at presentation only; stored order unchanged
+- [x] Create `Stage3Demo.java`
 
-### Progress
-- Complete
-  - Case-insensitive name search with query trimming in `RecipeBook.searchByName`
-  - Ingredient-based search in `RecipeBook.searchByIngredient`
-  - Multi-token search in `RecipeBook.search`
-  - Front-end name-based sorting (A–Z and Z–A) in `RecipeSorter.sortByName`
-  - Secondary sort key (case-sensitive name) for deterministic ordering
-  - Demo: `Stage3Demo.java`
+**Progress:** Complete
 
 ---
 
@@ -147,19 +142,16 @@ Generate a combined ingredient list from multiple recipes.
 - **Sorted presentation**
   - Ingredients displayed in a consistent order (e.g., alphabetical by name)
 
-### Acceptance Criteria
-- Ingredients with the same normalized name are summed. ✓
-- Aggregation does not modify original recipes. ✓
-- Output formatting follows the same amount rules as recipes. ✓
-- Shopping cart ingredients are displayed in a consistent order. ✓
+### Design Tasks Checklist
+- [x] Implement ingredient aggregation across multiple recipes (`ShoppingCart.aggregate`)
+- [x] Case-insensitive name normalization
+- [x] Sum amounts for matching ingredient names
+- [x] Non-destructive: original recipes unchanged
+- [x] Output formatting follows Recipe amount rules
+- [x] Sorted presentation (alphabetical by ingredient name)
+- [x] Create `Stage4Demo.java`
 
-### Progress
-- Complete
-  - `ShoppingCart.aggregate(List<Recipe>)` combines ingredients from multiple recipes
-  - Case-insensitive name normalization; amounts summed for matching names
-  - Same formatting rules as Recipe (formatAmount)
-  - Output sorted alphabetically by ingredient name
-  - Demo: `Stage4Demo.java`
+**Progress:** Complete
 
 ---
 
@@ -202,18 +194,17 @@ Persist and restore application state using files.
   - Handle missing or invalid fields according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md))
   - Provide meaningful error messages for debugging
 
-### Acceptance Criteria
-- Recipe and ingredient order is preserved. ✓
-- Stored numeric values remain unformatted. ✓
-- Loaded data is validated before use. ✓
-- Invalid data is handled according to documented policy (see Validation Policy in [docs/DATA_MODEL.md](docs/DATA_MODEL.md)). ✓
+### Design Tasks Checklist
+- [x] Implement JSON writer (`RecipeJsonStore.save`)
+- [x] Implement JSON reader (`RecipeJsonStore.load`)
+- [x] Preserve recipe and ingredient order
+- [x] Store numeric values unformatted (full precision)
+- [x] Validate loaded data per DATA_MODEL policy
+- [x] Handle invalid data with clear error messages (all-or-nothing)
+- [x] Extra/unknown fields ignored on load
+- [x] Create `Stage5Demo.java`
 
-### Progress
-- Complete
-  - `RecipeJsonStore.save(RecipeBook, String)` writes JSON to file
-  - `RecipeJsonStore.load(String)` loads and validates JSON
-  - Extra fields ignored; validation follows DATA_MODEL policy
-  - Demo: `Stage5Demo.java`
+**Progress:** Complete
 
 ---
 
@@ -331,20 +322,18 @@ Enter command: 7
 Goodbye!
 ```
 
-### Acceptance Criteria
-- UI depends on service and model layers, not persistence internals. ✓
-- All previously implemented features are accessible through the UI. ✓
-- Sorting and formatting rules are consistently applied. ✓
-- Search commands return correct results consistent with Stage 3. ✓
-- Shopping cart aggregation returns correct results consistent with Stage 4. ✓
-- Load and save commands report success and errors per the Validation Policy. ✓
-- Invalid input does not crash the program; users receive helpful messages and can retry. ✓
+### Design Tasks Checklist
+- [x] Create console-based UI (`ConsoleUI`)
+- [x] List all recipes (sorted)
+- [x] Search recipes (name and ingredient, multi-token)
+- [x] View recipe details
+- [x] Build shopping cart from selected recipes
+- [x] Load recipes from file
+- [x] Save recipes to file
+- [x] UI depends on service layer; robust input handling
+- [x] Create `Stage6Demo.java`
 
-### Progress
-- Complete
-  - `ConsoleUI` with menu-driven interface
-  - Commands: list, search, view details, shopping cart, load, save, exit
-  - Demo: `Stage6Demo.java`; run `ConsoleUI` for interactive use
+**Progress:** Complete
 
 ---
 
@@ -366,12 +355,14 @@ Stabilize and improve the system.
 - Optional identifiers for recipes
 - Refactor classes into package `cmps357.sp26` to align namespaces
 
-**Acceptance Criteria**
-- Existing behavior remains unchanged unless explicitly extended.
-- Documentation remains consistent with implementation.
+### Design Tasks Checklist
+- [x] Refactor Recipe to use `List<Ingredient>` instead of parallel lists
+- [x] Improve error messages in `addIngredient`
+- [x] Update RecipeTest to use public APIs (remove reflection)
+- [x] Existing behavior unchanged unless explicitly extended
+- [x] Documentation consistent with implementation
 
-**Progress**
-- Not started
+**Progress:** Complete
 
 ---
 

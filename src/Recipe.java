@@ -1,14 +1,12 @@
 // src/Recipe.java
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Recipe {
     private final String name;
     private int servings;
-
-    // Parallel lists to keep Day-1 Java simple (no extra classes required).
-    private final ArrayList<String> ingredientNames = new ArrayList<>();
-    private final ArrayList<Double> ingredientAmounts = new ArrayList<>();
+    private final List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe(String name, int servings) {
         if (name == null || name.isBlank()) {
@@ -49,26 +47,22 @@ public class Recipe {
      * </ul>
      *
      * <p>If either input is invalid, this method leaves the recipe unchanged
-     * and prints a debug message to standard output.
+     * and prints a message to standard error.
      *
      * @param ingredientName the name of the ingredient
      * @param amount the amount of the ingredient
      */
     public void addIngredient(String ingredientName, double amount) {
         if (ingredientName == null || ingredientName.trim().isEmpty()) {
-            System.err.println("[DEBUG] Invalid ingredient name. Ingredient not added.");
+            System.err.println("Invalid ingredient: name must be non-empty. Ingredient not added.");
             return;
         }
-
         if (amount <= 0) {
-            System.err.println("[DEBUG] Invalid ingredient amount. Ingredient not added.");
+            System.err.println("Invalid ingredient: amount must be greater than 0. Ingredient not added.");
             return;
         }
-
-        ingredientNames.add(ingredientName);
-        ingredientAmounts.add(amount);
+        ingredients.add(new Ingredient(ingredientName.trim(), amount));
     }
-
 
     /**
      * Returns a copy of the list of ingredient names in this recipe.
@@ -79,7 +73,9 @@ public class Recipe {
      * @return a new list of ingredient names in the order they were added
      */
     public List<String> getIngredientNames() {
-        return new ArrayList<>(ingredientNames);
+        return ingredients.stream()
+                .map(Ingredient::getName)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -92,20 +88,18 @@ public class Recipe {
      * @return a new list of ingredient amounts in the order they were added
      */
     public List<Double> getIngredientAmounts() {
-        return new ArrayList<>(ingredientAmounts);
+        return ingredients.stream()
+                .map(Ingredient::getAmount)
+                .collect(Collectors.toList());
     }
 
     /**
      * Returns the number of ingredient entries in this recipe.
      *
-     * <p>This recipe stores ingredient data in parallel lists; the number of
-     * entries is the size of the ingredient name list.
-     *
      * @return the number of ingredients added to the recipe
      */
     public int totalIngredientCount() {
-        // Return the number of ingredient entries (parallel lists length)
-        return ingredientNames.size();
+        return ingredients.size();
     }
 
     /**
@@ -122,13 +116,13 @@ public class Recipe {
         if (newServings <= 0) {
             throw new IllegalArgumentException("newServings must be positive");
         }
-
         double factor = (double) newServings / this.servings;
-
-        for (int i = 0; i < ingredientAmounts.size(); i++) {
-            ingredientAmounts.set(i, ingredientAmounts.get(i) * factor);
+        List<Ingredient> scaled = new ArrayList<>();
+        for (Ingredient i : ingredients) {
+            scaled.add(i.scale(factor));
         }
-
+        ingredients.clear();
+        ingredients.addAll(scaled);
         this.servings = newServings;
     }
 
@@ -149,24 +143,20 @@ public class Recipe {
      *
      * @return a formatted string representation of the recipe
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(" (serves ").append(servings).append(")\n");
-
-        for (int i = 0; i < ingredientNames.size(); i++) {
-            String iname = ingredientNames.get(i);
-            double amt = ingredientAmounts.get(i);
-            sb.append("- ").append(formatAmount(amt)).append(" ").append(iname).append("\n");
+        for (Ingredient i : ingredients) {
+            sb.append("- ").append(formatAmount(i.getAmount())).append(" ").append(i.getName()).append("\n");
         }
-
         return sb.toString();
     }
 
     /**
      * Returns a prettified string representation of this recipe.
      *
-     * <p>Currently delegates to {@link #toString()} for Day-1 simplicity.
-     * Future work may provide a more sophisticated pretty-print formatting.
+     * <p>Currently delegates to {@link #toString()}.
      *
      * @return a user-friendly multi-line recipe description
      */
@@ -175,25 +165,11 @@ public class Recipe {
     }
 
     private String formatAmount(double x) {
-        // Spec:
-        // - If x is an integer value, print without decimals.
-        // - Else print with up to 2 decimals, trimming trailing zeros.
-        //
-        // Examples:
-        // 200.0 -> "200"
-        // 7.5 -> "7.5"
-        // 0.625 -> "0.63"
-        // 1.333 -> "1.33"
-        //
-        // Treat values extremely close to an integer as integers
         double rounded = Math.rint(x);
         if (Math.abs(x - rounded) < 1e-9) {
             return String.valueOf((long) rounded);
         }
-
-        // Format with two decimals, then trim trailing zeros
         String s = String.format("%.2f", x);
-        // remove trailing zeros and possible trailing decimal point
         if (s.indexOf('.') >= 0) {
             s = s.replaceAll("0+$", "");
             s = s.replaceAll("\\.$", "");

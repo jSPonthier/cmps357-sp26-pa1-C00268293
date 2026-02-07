@@ -63,14 +63,14 @@
 - [x] Shopping cart generation
 - [x] Load/save functionality
 
-### Stage 7: Refinement and Extension
-- [ ] Optional: Refactor Recipe to use Ingredient class instead of parallel lists
-- [ ] Improved error messages
-- [ ] Additional search options
-- [ ] Code quality improvements
+### Stage 7: Refinement and Extension (COMPLETE)
+- [x] Refactored Recipe to use Ingredient class (List<Ingredient>)
+- [x] Improved error messages in addIngredient
+- [x] RecipeTest updated to use public APIs (no reflection)
+- [x] Code quality: aligned Recipe with DATA_MODEL (ingredients as List<Ingredient>)
 
 ## Notes
-- Recipe class continues to use parallel lists for Day-1 simplicity
+- Recipe class now uses List<Ingredient> per DATA_MODEL
 - Ingredient class is available for future refactoring if needed
 - All existing functionality remains working and tested
 - Stage 2 scaffolding complete with RecipeBook, Ingredient, and search/sort utilities
